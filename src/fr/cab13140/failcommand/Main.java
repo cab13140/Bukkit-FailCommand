@@ -13,17 +13,17 @@ import java.util.Objects;
 
 
 public class Main extends JavaPlugin implements Listener {
-    boolean enabled;
-    ConsoleCommandSender cs = this.getServer().getConsoleSender();
-    boolean wecompat;
-    boolean  failmsg;
+    private boolean enabled;
+    private ConsoleCommandSender cs = this.getServer().getConsoleSender();
+    private boolean wecompat;
+    private boolean  failmsg;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
 
         // Read Config
-        enabled = this.getConfig().getBoolean("plugin-enable");
+        enabled = this.getConfig().getBoolean("plugin-enabled");
         wecompat = this.getConfig().getBoolean("we-compat");
         failmsg = this.getConfig().getBoolean("fail-msg");
 
@@ -58,17 +58,26 @@ public class Main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onChatMessage(AsyncPlayerChatEvent e){
-        String msg = e.getMessage();
-        boolean cancel = false;
-        if (wecompat){
-            cancel = msg.startsWith("(\\?\\?|\\?/|/\\?|::|:/|/:)");
-            if (!cancel)
-                cancel = msg.startsWith("(\\?|:)");
-        }else{
-            cancel = msg.startsWith("(\\?|:)");
+        if (enabled) {
+            String msg = e.getMessage();
+            boolean cancel = false;
+            if (wecompat) {
+                cancel = msg.startsWith("??")
+                        ||msg.startsWith("?/")
+                        ||msg.startsWith("/?")
+                        ||msg.startsWith(":/")
+                        ||msg.startsWith("/:")
+                        ||msg.startsWith("::");
+                if (!cancel)
+                    cancel = msg.startsWith(":")
+                            ||msg.startsWith("?");
+            } else {
+                cancel = msg.startsWith(":")
+                        ||msg.startsWith("?");
+            }
+            e.setCancelled(cancel);
+            if (failmsg && cancel)
+                e.getPlayer().sendMessage(ChatColor.BLUE + "Looks like you failed your command !");
         }
-        e.setCancelled(cancel);
-        if (failmsg)
-            e.getPlayer().sendMessage(ChatColor.BLUE + "Looks like you failed your command !");
     }
 }
