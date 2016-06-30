@@ -1,0 +1,18 @@
+name: FailCommand
+main: fr.cab13140.failcommand.Main
+version: 0.1
+description: A plugin for bukkit which prevent spam of failed command
+author: _cab13_
+
+commands:
+  failcommand:
+    description: Reloads FailCommand
+    usage: /failcommand reload
+    permission: failcommand.reload
+    aliases:
+    - flc
+
+permissions:
+  failcommand.reload:
+    description: Allow usage of /failcommand reload
+    default: op

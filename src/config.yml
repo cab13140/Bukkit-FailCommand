@@ -1,0 +1,15 @@
+# Config file of FailCommand
+# Created by _cab13_
+#
+# DEFAULT CONFIG :
+# plugin-enabled: true
+
+# Enable the plugin
+plugin-enabled: true
+
+# WorldEdit compat (Double fail, or simple fail)
+# Exemple : ?/ or /? or ??
+we-compat: false
+
+# Send a message when a player fails
+fail-msg: false
