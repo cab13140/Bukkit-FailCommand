@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="TestFLC">
-    <output-path>$USER_HOME$/Desktop/MineTools/BukkitTest/plugins</output-path>
-    <root id="archive" name="TestFLC.jar">
+  <artifact type="jar" name="SpigotFLC">
+    <output-path>$USER_HOME$/Desktop/MineTools/SpigotTest/plugins</output-path>
+    <root id="archive" name="SpigotFLC.jar">
       <element id="module-output" name="FailCommand" />
       <element id="file-copy" path="$PROJECT_DIR$/src/config.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
