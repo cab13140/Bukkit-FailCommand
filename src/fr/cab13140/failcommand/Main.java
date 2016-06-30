@@ -47,9 +47,11 @@ public class Main extends JavaPlugin implements Listener {
         if (cmd.getName().equalsIgnoreCase("failcommand")||cmd.getName().equalsIgnoreCase("flc")){
             if (args.length == 1) {
                 if (Objects.equals(args[0], "reload")) {
-                    this.reloadConfig();
-                    cs.sendMessage("Reloading FailCommand Config...");
-                    return true;
+                    if (s.hasPermission("failcommand.reload")) {
+                        this.reloadConfig();
+                        cs.sendMessage("Reloading FailCommand Config...");
+                        return true;
+                    }
                 }
             }
         }
