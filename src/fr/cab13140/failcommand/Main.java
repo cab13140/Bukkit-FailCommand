@@ -24,7 +24,6 @@ public class Main extends JavaPlugin implements Listener {
 
         // Read Config
         enabled = this.getConfig().getBoolean("plugin-enabled");
-        wecompat = this.getConfig().getBoolean("we-compat");
         failmsg = this.getConfig().getBoolean("fail-msg");
 
         if (enabled){
@@ -62,21 +61,8 @@ public class Main extends JavaPlugin implements Listener {
     public void onChatMessage(AsyncPlayerChatEvent e){
         if (enabled) {
             String msg = e.getMessage();
-            boolean cancel = false;
-            if (wecompat) {
-                cancel = msg.startsWith("??")
-                        ||msg.startsWith("?/")
-                        ||msg.startsWith("/?")
-                        ||msg.startsWith(":/")
-                        ||msg.startsWith("/:")
-                        ||msg.startsWith("::");
-                if (!cancel)
-                    cancel = msg.startsWith(":")
-                            ||msg.startsWith("?");
-            } else {
-                cancel = msg.startsWith(":")
-                        ||msg.startsWith("?");
-            }
+            boolean cancel = msg.startsWith(":")
+                    ||msg.startsWith("?");
             e.setCancelled(cancel);
             if (failmsg && cancel)
                 e.getPlayer().sendMessage(ChatColor.BLUE + "Looks like you failed your command !");

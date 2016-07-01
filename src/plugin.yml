@@ -1,6 +1,6 @@
 name: FailCommand
 main: fr.cab13140.failcommand.Main
-version: 0.1
+version: 1.0.2
 description: A plugin for bukkit which prevent spam of failed command
 author: _cab13_
 
